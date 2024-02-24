@@ -1,3 +1,4 @@
+import java.util.UUID;
 
 class Calculator {
 
@@ -38,7 +39,22 @@ class Calculator {
     etc
      */
     int fibonacciNumberFinder(int n){
-        return 0;
+        if (n <= 0) {
+            return 0; // Fibonacci sequence is not defined for n <= 0
+        } else if (n == 1 || n == 2) {
+            return 1; // Base cases: first two Fibonacci numbers are 1
+        }
+
+        int prev = 1; // Initialize the first Fibonacci number
+        int curr = 1; // Initialize the second Fibonacci number
+
+        for (int i = 3; i <= n; ++i) {
+            int next = prev + curr; // Calculate the next Fibonacci number
+            prev = curr; // Update prev to current Fibonacci number
+            curr = next; // Update current Fibonacci number to next Fibonacci number
+        }
+
+        return curr;
     }
 
 
@@ -50,7 +66,18 @@ class Calculator {
     if int a = 16 then this method returns: 10000
      */
     String intToBinaryNumber(int number){
-        return null;
+        if (number == 0) {
+            return "0"; // Special case for 0
+        }
+
+        StringBuilder binary = new StringBuilder();
+        while (number > 0) {
+            int remainder = number % 2; // Get the remainder when divided by 2
+            binary.append(remainder); // Append the remainder to the string
+            number /= 2; // Divide the number by 2
+        }
+
+        return binary.reverse().toString();
     }
 
     /*
@@ -62,7 +89,13 @@ class Calculator {
     if you run this function twice with the same String input, it must return 2 unique String IDs
      */
     String createUniqueID(String n){
-        return null;
+        // Generate a random UUID to use as a suffix
+        String suffix = UUID.randomUUID().toString().replaceAll("-", "");
+
+        // Combine the original string with the suffix to create a unique ID
+        String uniqueID = n + suffix;
+
+        return uniqueID;
     }
 
 
